@@ -1,0 +1,14 @@
+{
+	"id": "{8DE48D7F-9D53-4AFF-A417-190AF1CA6630}",
+	"name": "IPSShadowingConditionSunPosition",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingConditionSunPosition"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdCond"
+}

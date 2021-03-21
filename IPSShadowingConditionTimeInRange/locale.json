@@ -1,0 +1,20 @@
+{
+	"translations": {
+		"de": { 
+			"Condition Definition": "Definition Bedingung",
+			"Variable Time Start": "Variable Zeitpunkt Start",
+			"Variable Time Lower Limit Start": "Variable Zeitpunkt unteres Limit Start (optional)",
+			"Variable Time Upper Limit Start": "Variable Zeitpunkt oberes Limit Start (optional)",
+			"Variable Time End": "Variable Zeitpunkt Ende",
+			"Variable Time Lower Limit End": "Variable Zeitpunkt unteres Limit Ende (optional)",
+			"Variable Time Upper Limit End": "Variable Zeitpunkt oberes Limit Ende (optional)",
+			"Evaluate": "Evaluierung",
+			"Evaluated": "Evaluierung",
+			"Status Definition": "Definition Statusmeldung",
+			"Status Message evaluated": "Status Meldung evaluiert (optional)",
+			"Status Message not evaluated": "Status Meldung nicht evaluiert (optional)",
+			"Reference Time Start NOT defined":"Variable Zeitpunkt Start nicht definiert",
+			"Reference Time End NOT defined":"Variable Zeitpunkt Ende nicht definiert"
+		}
+	}
+}

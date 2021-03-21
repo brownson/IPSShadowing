@@ -1,0 +1,14 @@
+{
+	"id": "{8E8CEFFC-2E0F-4072-AB19-A44D64B21D21}",
+	"name": "IPSShadowingConditionTimeInRange",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingConditionTimeInRange"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdCond"
+}

@@ -1,0 +1,33 @@
+{ 
+	"elements": [
+		{                                            "type": "Label",             "caption": "Condition Definition" },
+		{ "name": "PropertyVariableID1",             "type": "SelectVariable",    "caption": "Variable Link 1" },
+		{ "name": "PropertyComparator",              "type": "Select",            "caption": "Comparator",
+													 "options": [ { "caption": ">",  "value": ">" },
+																  { "caption": ">=", "value": ">=" },
+																  { "caption": "=",  "value": "=" },
+																  { "caption": "<=", "value": "<=" },
+																  { "caption": "<",  "value": "<" }
+																] },
+		{ "name": "PropertyVariableID2",             "type": "SelectVariable",    "caption": "Variable Link 2" },
+		{                                            "type": "Label",             "caption": "Status Definition" },
+		{ "name": "PropertyStatusMessageTrue",       "type": "ValidationTextBox", "caption": "Status Message evaluated" },
+		{ "name": "PropertyStatusMessageFalse",      "type": "ValidationTextBox", "caption": "Status Message not evaluated" }
+	], 
+	"actions": [ 
+        {  "type": "TestCenter" },
+        {  "type": "Button",       "caption": "Evaluate",   "onClick": "ShdCond_Evaluate($id);" }
+	] ,
+	"status": [
+		{
+		"code": 200,
+		"caption": "Reference Variable 1 NOT defined",
+		"icon": "inactive"
+	},
+		{
+		"code": 201,
+		"caption": "Reference Variable 2 NOT defined",
+		"icon": "inactive"
+	}
+	]
+}

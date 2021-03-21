@@ -1,0 +1,14 @@
+{
+	"id": "{9A700FC6-84CA-4896-8978-1B70AF878420}",
+	"name": "IPSShadowingDevice",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingDevice"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdDev"
+}

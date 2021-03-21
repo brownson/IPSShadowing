@@ -1,0 +1,81 @@
+{ 
+	"elements": [
+		{                                           "type": "Label",             "caption": "Device Definition" },
+		{ "name": "PropertyLevelID",                "type": "SelectVariable",    "caption": "Variable Level Link",   "width":"400px" },
+		{ "name": "PropertyType",                   "type": "Select",            "caption": "Shadowing Type",       "width":"400px",
+													 "options": [ { "caption": "Shutter",                       "value": 0 },
+																  { "caption": "Blind (Up/Down)",               "value": 1 },
+																  { "caption": "Marquee",                       "value": 3 }
+																] },
+		{ "name": "PropertyTimeMove",               "type": "NumberSpinner",    "caption": "Time Shutter Movement" ,  "suffix":" Seconds", "value":60},
+		{                                           "type": "RowLayout",     "items": [
+			{ "name": "PropertyTimeBladeUp",        "type": "NumberSpinner",    "caption": "Time Close Blades Up" ,   "suffix":" Seconds", "value":2},
+			{ "name": "PropertyTimeBladeDown",      "type": "NumberSpinner",    "caption": "Time Close Blades Down" , "suffix":" Seconds", "value":1}
+		] },
+		{                                            "type": "Label",             "caption": "Rule Definition" },
+		{ "name": "PropertyTimer",                   "type": "NumberSpinner",     "caption": "Timer for evaluating Rules" ,  "suffix":" Seconds", "value":300},
+		{ "name": "PropertyRules",                   "type": "List",              "caption": "Shadowing Rules",
+													 "add": true, "delete": true, "rowCount": 6,
+													 "columns": [ { "caption": "Rule", "name": "RuleID",
+																	"width": "auto", "add": -1,
+																	"edit": { "type": "Select" , "options": [ ]}
+																  },
+																  { "caption": "Evaluated", "name": "Evaluated", "width": "200px", "add": true,
+																	"edit": { "type": "CheckBox" }
+																  },
+																  { "caption": "Program", "name": "Program", "width": "300px", "add": 0,
+																	"edit": { "type": "Select", "options": [ { "caption": "Do Nothing",        "value": 0 },
+																											 { "caption": "Open",              "value": 1 },
+																											 { "caption": "Close",             "value": 2 },
+																											 { "caption": "Shadowing",         "value": 3 },
+																											 { "caption": "Open or Shadowing", "value": 4 },
+																											 { "caption": "90%",               "value": 90 },
+																											 { "caption": "80%",               "value": 80 },
+																											 { "caption": "70%",               "value": 70 },
+																											 { "caption": "60%",               "value": 60 },
+																											 { "caption": "50%",               "value": 50 },
+																											 { "caption": "40%",               "value": 40 },
+																											 { "caption": "30%",               "value": 30 },
+																											 { "caption": "20%",               "value": 20 },
+																											 { "caption": "10%",               "value": 10 } ] }
+																  }
+																] },
+
+		{                                           "type": "Label",             "caption": "Manual Mode" },
+		{ "name": "PropertyTimeManual",             "type": "NumberSpinner",     "caption": "Time for Manual Mode (0 to disable Manuel Mode)" ,   "suffix":" Seconds", "value":60},
+		{ "name": "PropertyReset",                  "type": "List",              "caption": "Reset Rules",
+													 "add": true, "delete": true, "rowCount": 3,
+													 "columns": [ { "caption": "Rule", "name": "RuleID",
+																	"width": "auto", "add":"",
+																	"edit": { "type": "Select" ,"options": [ ]}
+																  },
+																  { "caption": "Action", "name": "Action", "width": "200px", "add": 0,
+																	"edit": { "type": "Select", "options": [ { "caption": "Reset on Change",  "value": 0 },
+																											 { "caption": "Reset on TRUE",    "value": 1 },
+																											 { "caption": "Reset on FALSE",   "value": 2 } ] }
+																  }
+																] }
+
+	], 
+	"actions": [ 
+		{  "type": "TestCenter" },
+		{  "type": "Button",       "caption": "Evaluate Rules",   "onClick": "ShdDev_EvaluateRules($id);" },
+		{  "type": "Button",       "caption": "Execute Dimout",   "onClick": "ShdDev_DimOut($id);" }
+	] ,
+	"status": [ {
+		"code": 200,
+		"caption": "Level Variable NOT defined",
+		"icon": "inactive"
+	},
+	{
+		"code": 201,
+		"caption": "No Rules defined",
+		"icon": "inactive"
+	},
+	{
+		"code": 202,
+		"caption": "Shutter Time NOT defined",
+		"icon": "inactive"
+	}
+	]
+}

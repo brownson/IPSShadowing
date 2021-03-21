@@ -1,0 +1,15 @@
+{
+	"translations": {
+		"de": { 
+			"Condition Definition": "Definition Bedingung",
+			"Variable Link": "Variable Link",
+			"Reference Value": "Referenz Wert",
+			"Evaluate": "Evaluierung",
+			"Evaluated": "Evaluierung",
+			"Status Definition": "Definition Statusmeldung",
+			"Status Message evaluated": "Status Meldung evaluiert (optional)",
+			"Status Message not evaluated": "Status Meldung nicht evaluiert (optional)",
+			"Reference Variable NOT defined":"Referenz Variable nicht definiert"
+		}
+	}
+}

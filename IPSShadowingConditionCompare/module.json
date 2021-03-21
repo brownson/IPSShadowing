@@ -1,0 +1,14 @@
+{
+	"id": "{C7EDAE87-6018-4556-825F-7E56F5EAFC2E}",
+	"name": "IPSShadowingConditionCompare",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingConditionCompare"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdCond"
+}

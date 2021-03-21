@@ -1,0 +1,14 @@
+{
+	"id": "{4C45FA90-26A9-4BCA-A6C9-0C45B4AE6D57}",
+	"name": "IPSShadowingRule",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingRule"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdRule"
+}

@@ -1,0 +1,28 @@
+{ 
+	"elements": [
+		{                                            "type": "Label",             "caption": "Rule Definition" },
+		{ "name": "PropertyConditions",              "type": "List",              "caption": "Conditions",
+													 "add": true, "delete": true,
+													 "columns": [ { "caption": "Condition", "name": "ConditionID",
+																	"width": "auto", "add": 0,
+																	"edit": { "type": "SelectInstance" , "validModules ": [ "{C7EDAE87-6018-4556-825F-7E56F5EAFC2E}", 
+																															"{8DE48D7F-9D53-4AFF-A417-190AF1CA6630}",
+																															"{300931A4-6038-4C8C-8BF8-CEE13A1AAB18}",
+																															"{CC4C8FFB-2A47-46BA-82AA-9C2068C34ACD}",
+																															"{8E8CEFFC-2E0F-4072-AB19-A44D64B21D21}" ]}
+																  },
+																  { "caption": "Evaluated", "name": "Evaluated",
+																	"width": "200", "add": true,
+																	"edit": { "type": "CheckBox" }
+																  }
+																] }, 
+		{                                            "type": "Label",             "caption": "Status Definition" },
+		{ "name": "PropertyStatusMessageTrue",       "type": "ValidationTextBox", "caption": "Status Message evaluated" },
+		{ "name": "PropertyStatusMessageFalse",      "type": "ValidationTextBox", "caption": "Status Message not evaluated" }
+	], 
+	"actions": [ 
+        {  "type": "TestCenter" },
+        {  "type": "Button",       "caption": "Evaluate",   "onClick": "ShdRule_Evaluate($id);" }
+	] ,
+   "status": []
+}

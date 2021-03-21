@@ -1,0 +1,34 @@
+{ 
+	"elements": [
+		{                                            "type": "Label",             "caption": "Condition Definition" },
+		{ "name": "PropertyVariableID1Value",        "type": "SelectVariable",    "caption": "Variable Time Start" },
+		{                                            "type": "RowLayout",     "items": [
+			{ "name": "PropertyVariableID1Lower",    "type": "SelectVariable",    "caption": "Variable Time Lower Limit Start" },
+			{ "name": "PropertyVariableID1Upper",    "type": "SelectVariable",    "caption": "Variable Time Upper Limit Start" }
+		] },
+		{ "name": "PropertyVariableID2Value",        "type": "SelectVariable",    "caption": "Variable Time End" },
+		{                                            "type": "RowLayout",     "items": [
+			{ "name": "PropertyVariableID2Lower",    "type": "SelectVariable",    "caption": "Variable Time Lower Limit End" },
+			{ "name": "PropertyVariableID2Upper",    "type": "SelectVariable",    "caption": "Variable Time Upper Limit End" }
+		] },
+		{                                            "type": "Label",             "caption": "Status Definition" },
+		{ "name": "PropertyStatusMessageTrue",       "type": "ValidationTextBox", "caption": "Status Message evaluated" },
+		{ "name": "PropertyStatusMessageFalse",      "type": "ValidationTextBox", "caption": "Status Message not evaluated" }
+	], 
+	"actions": [ 
+        {  "type": "TestCenter" },
+        {  "type": "Button",       "caption": "Evaluate",   "onClick": "ShdCond_Evaluate($id);" }
+	] ,
+	"status": [
+	{
+		"code": 200,
+		"caption": "Reference Time Start NOT defined",
+		"icon": "inactive"
+	},
+	{
+		"code": 201,
+		"caption": "Reference Time End NOT defined",
+		"icon": "inactive"
+	}
+	]
+}

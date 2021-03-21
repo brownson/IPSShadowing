@@ -1,0 +1,14 @@
+{
+	"id": "{300931A4-6038-4C8C-8BF8-CEE13A1AAB18}",
+	"name": "IPSShadowingConditionEquals",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingConditionEquals"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdCond"
+}

@@ -1,0 +1,14 @@
+{
+	"id": "{CC4C8FFB-2A47-46BA-82AA-9C2068C34ACD}",
+	"name": "IPSShadowingConditionLimit",
+	"type": 3,
+	"vendor": "Brownson",
+	"aliases": 
+	[
+		"IPSShadowingConditionLimit"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "ShdCond"
+}

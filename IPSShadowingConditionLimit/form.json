@@ -1,0 +1,14 @@
+{ 
+	"elements": [
+		{                                            "type": "Label",             "caption": "Condition Definition" },
+		{ "name": "PropertyVariableID",              "type": "SelectVariable",    "caption": "Variable Link" },
+		{                                            "type": "Label",             "caption": "Status Definition" },
+		{ "name": "PropertyStatusMessageTrue",       "type": "ValidationTextBox", "caption": "Status Message evaluated" },
+		{ "name": "PropertyStatusMessageFalse",      "type": "ValidationTextBox", "caption": "Status Message not evaluated" }
+	], 
+	"actions": [ 
+        {  "type": "TestCenter" },
+        {  "type": "Button",       "caption": "Evaluate",   "onClick": "echo ShdCond_Evaluate($id);" }
+	] ,
+   "status": []
+}
