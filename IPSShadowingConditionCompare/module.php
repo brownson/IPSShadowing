@@ -80,6 +80,8 @@ class IPSShadowingConditionCompare extends IPSModule
 		} else {
 			throw new Exception('Unknown Comparator '.$comparator);
 		}
+		$this->SendDebug('Evaluate', "Evaluate $valueLink1 $comparator $valueLink2, Evaluated=".($evaluated?'Yes':'No'), 0);
+
 		$this->SetValue('Evaluated', $evaluated);
 		if ($evaluated) {
 			if ($this->ReadPropertyString('PropertyStatusMessageTrue') === '') {

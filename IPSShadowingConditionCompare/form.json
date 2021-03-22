@@ -23,11 +23,11 @@
 		"code": 200,
 		"caption": "Reference Variable 1 NOT defined",
 		"icon": "inactive"
-	},
+		},
 		{
 		"code": 201,
 		"caption": "Reference Variable 2 NOT defined",
 		"icon": "inactive"
-	}
+		}
 	]
 }

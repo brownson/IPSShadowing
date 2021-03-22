@@ -59,8 +59,7 @@
 	], 
 	"actions": [ 
 		{  "type": "TestCenter" },
-		{  "type": "Button",       "caption": "Evaluate Rules",   "onClick": "ShdDev_EvaluateRules($id);" },
-		{  "type": "Button",       "caption": "Execute Dimout",   "onClick": "ShdDev_DimOut($id);" }
+		{  "type": "Button",       "caption": "Evaluate Rules",   "onClick": "ShdDev_EvaluateRules($id);" }
 	] ,
 	"status": [ {
 		"code": 200,

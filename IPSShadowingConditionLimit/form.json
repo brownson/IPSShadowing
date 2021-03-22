@@ -10,5 +10,11 @@
         {  "type": "TestCenter" },
         {  "type": "Button",       "caption": "Evaluate",   "onClick": "echo ShdCond_Evaluate($id);" }
 	] ,
-   "status": []
+	"status": [
+		{
+		"code": 200,
+		"caption": "Reference Variable NOT defined",
+		"icon": "inactive"
+	}
+	]
 }

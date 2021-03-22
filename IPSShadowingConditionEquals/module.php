@@ -63,7 +63,8 @@ class IPSShadowingConditionEquals extends IPSModule
 		$valueLink = GetValue($this->ReadPropertyInteger('PropertyVariableID'));
 		$valueRef  = $this->ReadPropertyString('PropertyRefValue');
 		$evaluated = $valueLink == $valueRef;
-		
+		$this->SendDebug('Evaluate', "Evaluate $valueLink == $valueRef, Evaluated=".($evaluated?'Yes':'No'), 0);
+
 		$this->SetValue('Evaluated', $evaluated);
 		if ($evaluated) {
 			if ($this->ReadPropertyString('PropertyStatusMessageTrue') === '') {

@@ -174,8 +174,11 @@ class IPSShadowingDevice extends IPSModule
 				$this->Program($Value);
 				break;
 			case 'ManualMode':
+				$this->SetValue($Ident, $Value);
+				break;
 			case 'Automatic':
 				$this->SetValue($Ident, $Value);
+				$this->EvaluateRules();
 				break;
 			default:
 				throw new Exception("Invalid ident");
@@ -188,7 +191,7 @@ class IPSShadowingDevice extends IPSModule
 			$programID = $this->GetIDForIdent('Program');
 			$manualSec = $this->ReadPropertyInteger('PropertyTimeManual');
 			$programTS = IPS_GetVariable($programID)['VariableUpdated'];
-			$this->SendDebug('MessageSink', "Received VM_UPDATE for ManualMode PrgTS=".date('H:i:s', $programTS).", CurrTS="
+			$this->SendDebug('MessageSink', "Received VM_UPDATE Value=".$Data[0].", PrgTS=".date('H:i:s', $programTS).", CurrTS="
 			                               .date('H:i:s', time()).", RefTS=".date('H:i:s', $programTS + $manualSec), 0);
 			if ($programTS + $manualSec < time() and !$this->GetValue('ManualMode') and $manualSec > 0) {
 				$this->SetValue('ManualMode', true /*ManualMode*/);
@@ -322,13 +325,18 @@ class IPSShadowingDevice extends IPSModule
 			// $dimoutUpTime ... $dimoutUpValue-$valueMin
 			if ($program == 2 /*Close*/) {
 				$dimoutUpTime    = $this->ReadPropertyFloat('PropertyTimeBladeUp');
-				$dimoutUpValue   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
+				$dimoutUpDelta   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
+				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta : $valueMax - $dimoutUpDelta;
 				
 				$dimoutDownTime  = $this->ReadPropertyFloat('PropertyTimeBladeDown');
 				$dimoutDownValue = round(( $dimoutDownTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
+				$dimoutDownValue = (strpos($profileName, '.Reversed') !== false) ? $dimoutDownDelta - $dimoutDownValue : $valueMax - $dimoutUpDelta + $dimoutDownValue;
+
 			} else if ($program == 3 /*Shadowing*/ or $program == 4 /*OpenOrShadowing*/) {
 				$dimoutUpTime    = $this->ReadPropertyFloat('PropertyTimeBladeUp');
 				$dimoutUpValue   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
+				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta : $valueMax - $dimoutUpDelta;
+
 			} else {
 			}
 			

@@ -69,12 +69,16 @@ class IPSShadowingConditionSunPosition extends IPSModule
 		$azimuthEnd    = $this->GetValue('AzimuthEnd');
 		$altitude      = round(GetValue(IPS_GetStatusVariableID($locationInstanceID, 'Altitude')), 1); 
 		$altitudeStart = $this->GetValue('Altitude');
-		
+		$this->SendDebug('Evaluate', "Evaluate Azimuth $azimuth in $azimuthStart-$azimuthEnd", 0);
+		$this->SendDebug('Evaluate', "Evaluate Azimuth $altitude above $altitudeStart", 0);
+
 		$evaluated = $azimuthStart < $azimuth && $azimuth < $azimuthEnd && $altitudeStart < $altitude;
 		$this->SetValue('Evaluated', $evaluated);
-		
+
 		$azimuthLog  = ($azimuthStart < $azimuth && $azimuth < $azimuthEnd) ? "$azimuth in $azimuthStart-$azimuthEnd" : "$azimuth NOT in $azimuthStart-$azimuthEnd";
 		$altitudeLog = ($altitudeStart < $altitude) ? "$altitude > $altitudeStart" : "$altitude <= $altitudeStart";
+		$this->SendDebug('Evaluate', "Evaluated: $azimuthLog, $altitudeLog, Evaluated=".($evaluated?'Yes':'No'), 0);
+		
 		if ($evaluated) {
 			if ($this->ReadPropertyString('PropertyStatusMessageTrue') === '') {
 				$this->SetValue('StatusMessage', $azimuthLog.', '.$altitudeLog);
