@@ -326,16 +326,19 @@ class IPSShadowingDevice extends IPSModule
 			if ($program == 2 /*Close*/) {
 				$dimoutUpTime    = $this->ReadPropertyFloat('PropertyTimeBladeUp');
 				$dimoutUpDelta   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
-				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta : $valueMax - $dimoutUpDelta;
+				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta 
+				                                                                 : $valueMax - $dimoutUpDelta;
 				
 				$dimoutDownTime  = $this->ReadPropertyFloat('PropertyTimeBladeDown');
 				$dimoutDownValue = round(( $dimoutDownTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
-				$dimoutDownValue = (strpos($profileName, '.Reversed') !== false) ? $dimoutDownDelta - $dimoutDownValue : $valueMax - $dimoutUpDelta + $dimoutDownValue;
+				$dimoutDownValue = (strpos($profileName, '.Reversed') !== false) ? max($dimoutDownDelta - $dimoutDownValue, $valueMin) 
+				                                                                 : min($valueMax - $dimoutUpDelta + $dimoutDownValue, $valueMax);
 
 			} else if ($program == 3 /*Shadowing*/ or $program == 4 /*OpenOrShadowing*/) {
 				$dimoutUpTime    = $this->ReadPropertyFloat('PropertyTimeBladeUp');
-				$dimoutUpValue   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
-				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta : $valueMax - $dimoutUpDelta;
+				$dimoutUpDelta   = round(( $dimoutUpTime * ($valueMax-$valueMin) / $timeTotal ) + $valueMin, 2);
+				$dimoutUpValue   = (strpos($profileName, '.Reversed') !== false) ? $dimoutUpDelta 
+				                                                                 : $valueMax - $dimoutUpDelta;
 
 			} else {
 			}
@@ -436,6 +439,7 @@ class IPSShadowingDevice extends IPSModule
 	private function MoveDeviceToPosition($position) {
 		$variableLevelID  = $this->ReadPropertyInteger('PropertyLevelID');
 		
+		IPS_Sleep(200);
 		$this->SendDebug('MoveDeviceToPosition', "Execute RequestAction for $variableLevelID=$position", 0);
 		$result = @RequestAction($variableLevelID, $position);
 		if ($result === false) {
