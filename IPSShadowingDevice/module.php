@@ -104,24 +104,30 @@ class IPSShadowingDevice extends IPSModule
 		IPS_SetVariableProfileAssociation('ShdDev.Program', 99,  $this->Translate('Error'), '', -1);
 		
 		if ($this->ReadPropertyInteger("PropertyType") == 0 /*Shutter*/) {
-			$this->RegisterVariableInteger('Control',       'Control',       'ShdDev.ControlShutter');
+			$this->RegisterVariableInteger('Control',       $this->Translate('Control'),       'ShdDev.ControlShutter');
 		} else if ($this->ReadPropertyInteger("PropertyType") == 1 /*BlindUpDown*/) {
-			$this->RegisterVariableInteger('Control',       'Control',       'ShdDev.ControlBlind');
+			$this->RegisterVariableInteger('Control',       $this->Translate('Control'),       'ShdDev.ControlBlind');
 		} else if ($this->ReadPropertyInteger("PropertyType") == 3 /*Marquee*/) {
-			$this->RegisterVariableInteger('Control',       'Control',       'ShdDev.ControlMarquee');
+			$this->RegisterVariableInteger('Control',       $this->Translate('Control'),       'ShdDev.ControlMarquee');
 		} else {
 		}
 		$this->EnableAction("Control");
-		$this->RegisterVariableInteger('Program',       'Program',       'ShdDev.Program');
+		$this->RegisterVariableInteger('Program',       $this->Translate('Program'),       'ShdDev.Program');
 		$this->EnableAction("Program");
-		$this->RegisterVariableBoolean('ManualMode',    'Manual Mode',   '~Switch');
+		$this->RegisterVariableBoolean('ManualMode',    $this->Translate('Manual Mode'),   '~Switch');
 		$this->EnableAction("ManualMode");
-		$this->RegisterVariableBoolean('Automatic',     'Automatic',     '~Switch');
+		$this->RegisterVariableBoolean('Automatic',     $this->Translate('Automatic'),     '~Switch');
 		$this->EnableAction("Automatic");
-		$this->RegisterVariableString ('StatusMessage', 'StatusMessage', '~TextBox');
+		$this->RegisterVariableString ('StatusMessage', $this->Translate('StatusMessage'), '~TextBox');
 		
 		$this->SetTimerInterval('EvaluateRulesTimer', $this->ReadPropertyInteger('PropertyTimer') * 1000);
 		$this->SetTimerInterval('DimOutTimer',        0);
+
+		IPS_SetName($this->GetIDForIdent('StatusMessage'),  $this->Translate('StatusMessage'));
+		IPS_SetName($this->GetIDForIdent('Automatic'),  $this->Translate('Automatic'));
+		IPS_SetName($this->GetIDForIdent('ManualMode'),  $this->Translate('Manual Mode'));
+		IPS_SetName($this->GetIDForIdent('Control'),  $this->Translate('Control'));
+		IPS_SetName($this->GetIDForIdent('Program'),  $this->Translate('Program'));
 
 		//Add references
 		foreach ($this->GetReferenceList() as $referenceID) {
@@ -175,6 +181,7 @@ class IPSShadowingDevice extends IPSModule
 				break;
 			case 'ManualMode':
 				$this->SetValue($Ident, $Value);
+				$this->EvaluateRules();
 				break;
 			case 'Automatic':
 				$this->SetValue($Ident, $Value);
@@ -522,13 +529,16 @@ class IPSShadowingDevice extends IPSModule
 				if ($rule->RuleID == -1 /*ManualMode*/) {
 					$evaluated     = ($rule->Evaluated == $this->GetValue('ManualMode'));
 					$statusMessage = 'Manual Mode';
-					$this->SendDebug('EvaluateRules', "Evaluated Rule 'ManualMode', Message=$statusMessage, Evaluated=".($evaluated?'Yes':'No'), 0);
+					$this->SendDebug('EvaluateRules', "Evaluated Rule 'ManualMode', Message=$statusMessage, Evaluated="
+					                                  .($evaluated?'Yes':'No').", Program="
+					                                  .$this->ProgramToName($rule->Program), 0);
 				} else {
 					ShdRule_Evaluate($rule->RuleID);
 					$evaluated     = ($rule->Evaluated == GetValue(IPS_GetStatusVariableID($rule->RuleID, 'Evaluated')));
 					$statusMessage = GetValue(IPS_GetStatusVariableID($rule->RuleID, 'StatusMessage'));
 					$this->SendDebug('EvaluateRules', "Evaluated Rule ".$rule->RuleID." (".IPS_GetName($rule->RuleID)
-					                                  ."), Message=$statusMessage, Evaluated=".($evaluated?'Yes':'No'), 0);
+					                                  ."), Message=$statusMessage, Evaluated=".($evaluated?'Yes':'No')
+					                                  .", Program=".$this->ProgramToName($rule->Program), 0);
 				}
 
 				// We have found the current Program
@@ -586,16 +596,19 @@ class IPSShadowingDevice extends IPSModule
 			$this->SetValue('Program', $program);
 			return;
 		}
+		
+		// Calculate Parameters
 		$this->CalcMovementParameters($program);
 
-		// Move Device to Target Position
-		$this->MoveDeviceToPosition($this->ReadAttributeFloat('PositionValue'));
-
+		// Set new Program/Movement Value
 		$this->SendDebug('Program', "Set Program=$program (".$this->ProgramToName($program).")", 0);
 		$this->SetValue('Program', $program);
 
 		$this->SendDebug('Program', "Set Movement=".$this->ReadAttributeInteger('Movement'), 0);
 		$this->SetValue('Control', $this->ReadAttributeInteger('Movement'));
+
+		// Move Device to Target Position
+		$this->MoveDeviceToPosition($this->ReadAttributeFloat('PositionValue'));
 
 		// Start Timer for Dimout and final Movement Value
 		if ($this->ReadAttributeInteger('PositionTime') == 0) {

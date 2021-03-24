@@ -31,18 +31,18 @@ class IPSShadowingRule extends IPSModule
 			return;
 		}
 
-		if (!IPS_VariableProfileExists('ShdCond.Evaluated')) {
-			IPS_CreateVariableProfile('ShdCond.Evaluated', 0);
+		if (!IPS_VariableProfileExists('ShdRule.Evaluated')) {
+			IPS_CreateVariableProfile('ShdRule.Evaluated', 0);
 		} 
-		IPS_SetVariableProfileIcon('ShdCond.Evaluated', 'Information');
-		IPS_SetVariableProfileText('ShdCond.Evaluated', '' /*Prefix*/, '' /*Suffix*/);
-		IPS_SetVariableProfileDigits('ShdCond.Evaluated', 0 /*Digits*/); 
-		IPS_SetVariableProfileValues('ShdCond.Evaluated', 0 /*Min*/, 1 /*Max*/, 0 /*Step*/); 
-		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 0, $this->Translate('false'), '', -1);
-		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 1, $this->Translate('true'), '', -1);
+		IPS_SetVariableProfileIcon('ShdRule.Evaluated', 'Information');
+		IPS_SetVariableProfileText('ShdRule.Evaluated', '' /*Prefix*/, '' /*Suffix*/);
+		IPS_SetVariableProfileDigits('ShdRule.Evaluated', 0 /*Digits*/); 
+		IPS_SetVariableProfileValues('ShdRule.Evaluated', 0 /*Min*/, 1 /*Max*/, 0 /*Step*/); 
+		IPS_SetVariableProfileAssociation('ShdRule.Evaluated', 0, $this->Translate('No'), '', 255*256);
+		IPS_SetVariableProfileAssociation('ShdRule.Evaluated', 1, $this->Translate('Yes'), '', 255*256*256);
 		
-		$this->RegisterVariableBoolean('Evaluated', 'Evaluated', 'ShdCond.Evaluated');
-		$this->RegisterVariableString('StatusMessage', 'StatusMessage', '~TextBox');
+		$this->RegisterVariableBoolean('Evaluated', $this->Translate('Evaluated'), 'ShdRule.Evaluated');
+		$this->RegisterVariableString('StatusMessage', $this->Translate('StatusMessage'), '~TextBox');
 		
        $conditions = json_decode($this->ReadPropertyString('PropertyConditions'));
 	}
@@ -57,7 +57,7 @@ class IPSShadowingRule extends IPSModule
 		foreach ($conditions as $condition) {
 			// Evaluate Condition
 			$this->SendDebug('Evaluate', "Evaluate Condition ".$condition->ConditionID.", Name=".IPS_GetName($condition->ConditionID), 0);
-			ShdCond_Evaluate($condition->ConditionID);
+			ShdRule_Evaluate($condition->ConditionID);
 			$conditionResult  = GetValue(IPS_GetStatusVariableID($condition->ConditionID, 'Evaluated'));
 			$conditionMessage = GetValue(IPS_GetStatusVariableID($condition->ConditionID, 'StatusMessage'));
 

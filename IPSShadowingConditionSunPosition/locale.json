@@ -2,7 +2,13 @@
 	"translations": {
 		"de": { 
 			"Evaluate": "Evaluierung",
-			"Evaluated": "Evaluierung",
+			"Evaluated": "Evaluiert",
+			"Yes": "Ja",
+			"No":"Nein",
+			"StatusMessage":"Statusmeldung",
+			"Azimuth Start":"Azimuth Start",
+			"Azimuth End":"Azimuth Ende",
+			"Altitude Start":"Altitude Start",
 			"Status Definition": "Definition Statusmeldung",
 			"Status Message evaluated": "Status Meldung evaluiert (optional)",
 			"Status Message not evaluated": "Status Meldung nicht evaluiert (optional)",

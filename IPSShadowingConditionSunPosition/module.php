@@ -26,17 +26,17 @@ class IPSShadowingConditionSunPosition extends IPSModule
 		IPS_SetVariableProfileText('ShdCond.Evaluated', '' /*Prefix*/, '' /*Suffix*/);
 		IPS_SetVariableProfileDigits('ShdCond.Evaluated', 0 /*Digits*/); 
 		IPS_SetVariableProfileValues('ShdCond.Evaluated', 0 /*Min*/, 1 /*Max*/, 0 /*Step*/); 
-		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 0, $this->Translate('false'), '', -1);
-		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 1, $this->Translate('true'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 0, $this->Translate('No'), '', 255*256);
+		IPS_SetVariableProfileAssociation('ShdCond.Evaluated', 1, $this->Translate('Yes'), '',255*256*256);
 		
-		$this->RegisterVariableFloat('AzimuthStart',   'Azimuth Start',   '~SunAzimuth.F');
+		$this->RegisterVariableBoolean('Evaluated', $this->Translate('Evaluated'), 'ShdCond.Evaluated');
+		$this->RegisterVariableString('StatusMessage', $this->Translate('StatusMessage'), '~TextBox');
+		$this->RegisterVariableFloat('AzimuthStart',   $this->Translate('Azimuth Start'),   '~SunAzimuth.F');
 		$this->EnableAction("AzimuthStart");
-		$this->RegisterVariableFloat('AzimuthEnd',     'Azimuth End',     '~SunAzimuth.F');
+		$this->RegisterVariableFloat('AzimuthEnd',     $this->Translate('Azimuth End'),     '~SunAzimuth.F');
 		$this->EnableAction("AzimuthEnd");
-		$this->RegisterVariableFloat('Altitude',       'Altitude Start',  '~SunAltitude.F');
+		$this->RegisterVariableFloat('Altitude',       $this->Translate('Altitude Start'),  '~SunAltitude.F');
 		$this->EnableAction("Altitude");
-		$this->RegisterVariableBoolean('Evaluated',    'Evaluated',       'ShdCond.Evaluated');
-		$this->RegisterVariableString('StatusMessage', 'StatusMessage',   '~TextBox');
 	}
 
 	// -------------------------------------------------------------------------
