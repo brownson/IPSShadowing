@@ -28,6 +28,8 @@ class IPSShadowingDevice extends IPSModule
 
 		$this->RegisterTimer('EvaluateRulesTimer',               0, 'ShdDev_EvaluateRules($_IPS[\'TARGET\']);');
 		$this->RegisterTimer('DimOutTimer',                      0, 'ShdDev_DimOut($_IPS[\'TARGET\']);');
+
+		$this->SetTimerInterval('EvaluateRulesTimer', $this->ReadPropertyInteger('PropertyTimer') * 1000);
 	}
 
 	// -------------------------------------------------------------------------
