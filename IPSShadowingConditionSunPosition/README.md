@@ -21,13 +21,12 @@ Das Modul stellt eine Beschattungsbedingung zur Auswertung der Sonnenposition zu
 
 ### 3. Software-Installation
 
-* Über das Module Control folgende URL hinzufügen:
-`https://github.com/brownson/IPSShadowing`
+Die Installation erfolgt über den Module Store.
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
 - Unter "Instanz hinzufügen" kann das 'IPSShadowing'-Modul mithilfe des Schnellfilters gefunden werden.
-    - Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
+  Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
 
@@ -63,5 +62,5 @@ Name                          | Beschreibung
 ShdCond_Evaluate              | Auswertung der Bedingung
 
 Beispiel:
-`ShdCond_Evaluate(12345);
+```ShdCond_Evaluate(12345);```
 
