@@ -29,7 +29,10 @@ class IPSShadowingDevice extends IPSModule
 		$this->RegisterTimer('EvaluateRulesTimer',               0, 'ShdDev_EvaluateRules($_IPS[\'TARGET\']);');
 		$this->RegisterTimer('DimOutTimer',                      0, 'ShdDev_DimOut($_IPS[\'TARGET\']);');
 
-		$this->SetTimerInterval('EvaluateRulesTimer', $this->ReadPropertyInteger('PropertyTimer') * 1000);
+		if ($this->ReadPropertyInteger('PropertyLevelID') > 0) {
+			$this->RegisterMessage($this->ReadPropertyInteger('PropertyLevelID'), VM_UPDATE);
+			$this->SetTimerInterval('EvaluateRulesTimer', $this->ReadPropertyInteger('PropertyTimer') * 1000);
+		}
 	}
 
 	// -------------------------------------------------------------------------
