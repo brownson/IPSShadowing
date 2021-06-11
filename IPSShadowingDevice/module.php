@@ -28,20 +28,11 @@ class IPSShadowingDevice extends IPSModule
 
 		$this->RegisterTimer('EvaluateRulesTimer',               0, 'ShdDev_EvaluateRules($_IPS[\'TARGET\']);');
 		$this->RegisterTimer('DimOutTimer',                      0, 'ShdDev_DimOut($_IPS[\'TARGET\']);');
-
-		if ($this->ReadPropertyInteger('PropertyLevelID') > 0) {
-			$this->RegisterMessage($this->ReadPropertyInteger('PropertyLevelID'), VM_UPDATE);
-			$this->SetTimerInterval('EvaluateRulesTimer', $this->ReadPropertyInteger('PropertyTimer') * 1000);
-		}
 	}
 
 	// -------------------------------------------------------------------------
 	public function ApplyChanges() {
 		parent::ApplyChanges();
-
-		if (IPS_GetKernelRunlevel() !== KR_READY) {
-			return;
-		}
 
 		if (!IPS_VariableProfileExists('ShdDev.ControlBlind')) {
 			IPS_CreateVariableProfile('ShdDev.ControlBlind', 1);
@@ -594,7 +585,7 @@ class IPSShadowingDevice extends IPSModule
 	}
 
 	// -------------------------------------------------------------------------
-	public function Program($program) {
+	public function Program(int $program) {
 		$this->SendDebug('Program', "Execute Program ".$this->ProgramToName($program), 0);
 		
 		if ($program == 0 /*Do Nothing*/) {
@@ -626,7 +617,7 @@ class IPSShadowingDevice extends IPSModule
 	}
 
 	// -------------------------------------------------------------------------
-	public function Move($movement) {
+	public function Move(int $movement) {
 		$this->SendDebug('Move', "Execute Movement $movement", 0);
 		$this->SetValue('ManualMode', true /*ManualMode*/);
 		if ($movement != 1) {
