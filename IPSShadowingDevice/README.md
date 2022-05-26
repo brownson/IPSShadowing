@@ -104,3 +104,49 @@ Rücksetzen des "Manuellen Modus" erfolgt immer zum Tag/Nacht Wechsel
 ![Example](imgs/ExampleJalousieInstanceConfig4.png)
 
 ![Example](imgs/ExampleJalousieInstanceObjects.png)
+
+### 8. Stop Funktion
+
+Die Stop Funktion für ein Gerät kann aktuell leider nur manuel implementiert werden.
+Folgende Vorgehensweise:
+* Erstellen Sie ein neues Skript, Beispiel siehe unten (hier wird bei einer Betätigung der "Gegenrichtung" auch automatisch ein Stop ausgeführt).
+* Weisen Sie das Skript der Statusvariable Control (Steuerung) als Aktionsskript zu
+
+Beispiel KNX: 
+```
+$variableID = $_IPS['VARIABLE'];
+$instanceID = IPS_GetParent($variableID);
+$valueOld   = GetValue(IPS_GetObjectIDByIdent('Control', $instanceID));
+$valueNew   = $_IPS['VALUE'];
+$knxID      = 46644; 
+
+if ( $valueNew == 1 /*Stop*/) {
+    RequestAction($knxID, true); 
+    ShdDev_Move($instanceID, 1 /*Stop*/);
+} else if (($valueNew == 0 /*Down*/ || $valueNew == 2 /*Up*/) && ($valueOld == 0 /*Down*/ || $valueOld == 2 /*Up*/)) {
+    RequestAction($knxID, true); 
+    ShdDev_Move($instanceID, 1 /*Stop*/);
+} else {
+    ShdDev_Move($instanceID, $valueNew);
+}
+```
+
+Beispiel Homematic: 
+```
+$variableID   = $_IPS['VARIABLE'];
+$instanceID   = IPS_GetParent($variableID);
+$homematicID  = IPS_GetParent(IPS_GetProperty($instanceID, "PropertyLevelID"));
+$valueNew     = $_IPS['VALUE'];
+$valueOld     = GetValue(IPS_GetObjectIDByIdent('Control', $instanceID));
+
+if ( $valueNew == 1 /*Stop*/) {
+    HM_WriteValueBoolean($homematicID , 'STOP', true);
+    ShdDev_Move($instanceID, 1 /*Stop*/);
+} else if (($valueNew == 0 /*Down*/ || $valueNew == 2 /*Up*/) && ($valueOld == 0 /*Down*/ || $valueOld == 2 /*Up*/)) {
+    HM_WriteValueBoolean($homematicID , 'STOP', true);
+    ShdDev_Move($instanceID, 1 /*Stop*/);
+} else {
+    ShdDev_Move($instanceID, $valueNew);
+}
+```
+
