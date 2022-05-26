@@ -15,10 +15,6 @@ class IPSShadowingConditionSunPosition extends IPSModule
 	public function ApplyChanges() {
 		parent::ApplyChanges();
 
-		if (IPS_GetKernelRunlevel() !== KR_READY) {
-			return;
-		}
-
 		if (!IPS_VariableProfileExists('ShdCond.Evaluated')) {
 			IPS_CreateVariableProfile('ShdCond.Evaluated', 0);
 		} 
@@ -41,7 +37,6 @@ class IPSShadowingConditionSunPosition extends IPSModule
 
 	// -------------------------------------------------------------------------
 	public function RequestAction($Ident, $Value) {
-		$this->SetValue($Ident, $Value);
 		switch($Ident) {
 			case 'AzimuthStart':
 				$this->SetValue($Ident, $Value);

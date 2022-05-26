@@ -167,7 +167,6 @@ class IPSShadowingDevice extends IPSModule
 
 	// -------------------------------------------------------------------------
 	public function RequestAction($Ident, $Value) {
-		$this->SetValue($Ident, $Value);
 		switch($Ident) {
 			case 'Control':
 				$this->Move($Value);
@@ -620,8 +619,11 @@ class IPSShadowingDevice extends IPSModule
 	public function Move(int $movement) {
 		$this->SendDebug('Move', "Execute Movement $movement", 0);
 		$this->SetValue('ManualMode', true /*ManualMode*/);
-		if ($movement != 1) {
+		if ($movement != 1 /*Stop*/) {
 			$this->Program($this->MovementToProgram($movement));
+		} else {
+			$this->SendDebug('Move', "Set Movement=1", 0);
+			$this->SetValue('Control', 1 /*Stop*/);
 		}
 	}
 

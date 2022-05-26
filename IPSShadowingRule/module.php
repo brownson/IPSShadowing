@@ -14,10 +14,7 @@ class IPSShadowingRule extends IPSModule
 
 	// -------------------------------------------------------------------------
 	public function RequestAction($Ident, $Value) {
-		$this->SetValue($Ident, $Value);
 		switch($Ident) {
-			case 'Evaluated':
-				break;
 			default:
 				throw new Exception("Invalid ident");
 		}
@@ -26,10 +23,6 @@ class IPSShadowingRule extends IPSModule
 	// -------------------------------------------------------------------------
 	public function ApplyChanges() {
 		parent::ApplyChanges();
-
-		if (IPS_GetKernelRunlevel() !== KR_READY) {
-			return;
-		}
 
 		if (!IPS_VariableProfileExists('ShdRule.Evaluated')) {
 			IPS_CreateVariableProfile('ShdRule.Evaluated', 0);
@@ -43,8 +36,6 @@ class IPSShadowingRule extends IPSModule
 		
 		$this->RegisterVariableBoolean('Evaluated', $this->Translate('Evaluated'), 'ShdRule.Evaluated');
 		$this->RegisterVariableString('StatusMessage', $this->Translate('StatusMessage'), '~TextBox');
-		
-       $conditions = json_decode($this->ReadPropertyString('PropertyConditions'));
 	}
 
 

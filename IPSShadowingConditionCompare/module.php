@@ -18,8 +18,6 @@ class IPSShadowingConditionCompare extends IPSModule
 	public function RequestAction($Ident, $Value) {
 		$this->SetValue($Ident, $Value);
 		switch($Ident) {
-			case 'Evaluated':
-				break;
 			default:
 				throw new Exception("Invalid ident");
 		}
@@ -28,10 +26,6 @@ class IPSShadowingConditionCompare extends IPSModule
 	// -------------------------------------------------------------------------
 	public function ApplyChanges() {
 		parent::ApplyChanges();
-
-		if (IPS_GetKernelRunlevel() !== KR_READY) {
-			return;
-		}
 
 		if (!IPS_VariableProfileExists('ShdCond.Evaluated')) {
 			IPS_CreateVariableProfile('ShdCond.Evaluated', 0);
