@@ -28,5 +28,11 @@ Folgende Module beinhaltet das IPSShadowing Repository:
 IPSShadowing besteht aus mehreren Modulen:
 
 * Beschattungsbedingung - Auswertung von Bedingungen wie Vergleich von Werten, Uhrzeiten, Sonnenposition usw.
-* Beschattungsregeln - ein oder mehrere Bedingungen können zu einer Regel gruppiert werden
-* Beschattungsdevice - Verknüpfung von Regeln mit Aktionen
+* Beschattungsregel - ein oder mehrere Bedingungen können zu einer Regel gruppiert werden
+* Beschattungsgerät - Verknüpfung von Regeln mit Aktionen
+
+Typische Anwendungsbeispiele:
+
+* Beschattung in Abhängigkeit von Temperatur, Sonnenstand und Anwesenheit
+* Schließen einer Beschattung in Abhängigkeit der Dämmerung oder einer bestimmter Uhrzeit
+* Bei einer manuellen Ansteuerung der Beschattung keine automatisierte Regel mehr anwenden

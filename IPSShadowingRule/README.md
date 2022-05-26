@@ -1,4 +1,4 @@
-# IPSShadowing Modul for IP-Symcon
+# IPSShadowingRule Modul for IP-Symcon
 
 Das Modul stellt eine Beschattungsregel zur Verfügung
 
@@ -26,14 +26,16 @@ Das Modul stellt eine Beschattungsregel zur Verfügung
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" kann das 'IPSShadowing'-Modul mithilfe des Schnellfilters gefunden werden.
+- Unter "Instanz hinzufügen" kann das 'IPSShadowingRule'-Modul mithilfe des Schnellfilters gefunden werden.
     - Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
 
-Name                          | Beschreibung
------------------------------ | ---------------------------------
-Bedingungen                   | Liste von Bedingungen die für die Regel ausgewertet werden sollen
+Name                           | Beschreibung
+------------------------------ | ---------------------------------
+Bedingungen                    | Liste von Bedingungen die für die Regel ausgewertet werden sollen
+Status Meldung evaluiert       | Status Meldung wenn die Bedingung auf TRUE ausgewertet wurde.
+Status Meldung nicht evaluiert | Status Meldung wenn die Bedingung auf FALSE ausgewertet wurde.
 
 
 ### 5. Statusvariablen und Profile
@@ -63,3 +65,24 @@ ShdRule_Evaluate              | Beschattung ansteuern
 Beispiel:
 `ShdRule_Evaluate(12345);
 
+### 7. Beispiele
+
+**Beispiel Tag:**
+
+Die Regel soll während des Tages auf TRUE evaluieren. 
+
+In diesem Beispiel besteht die Regel nur aus einer einfachen Bedingung, als Bedingung kann 
+jede "Beschattungs Bedingung" Instanz ausgewählt werden.
+
+![Example](imgs/ExampleDayInstanceConfig.png)
+
+![Example](imgs/ExampleDayInstanceObjects.png)
+
+**Beispiel Temperatur:**
+
+Die Regel soll auf TRUE evaluieren wenn es Tag ist, die Außen- und Innentemperatur überschritten 
+ sind und die Sonne in einem bestimmten Bereich ist.
+ 
+![Example](imgs/ExampleTemperaturInstanceConfig.png)
+
+![Example](imgs/ExampleTemperaturInstanceObjects.png)

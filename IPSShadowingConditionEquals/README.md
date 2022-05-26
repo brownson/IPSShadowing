@@ -1,4 +1,4 @@
-# IPSShadowing Modul for IP-Symcon
+# IPSShadowingConditionEquals Modul for IP-Symcon
 
 Das Modul stellt eine Beschattungsbedingung zum Vergleich einer Variable mit einem Referenz Wert zur Verfügung
 
@@ -25,7 +25,7 @@ Die Installation erfolgt über den Module Store.
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" kann das 'IPSShadowing'-Modul mithilfe des Schnellfilters gefunden werden.
+- Unter "Instanz hinzufügen" kann das 'IPSShadowingConditionEquals'-Modul mithilfe des Schnellfilters gefunden werden.
   Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
@@ -48,7 +48,6 @@ Name                          | Beschreibung
 Evaluated                     | Status der Bedingung, true wenn die Bedingung erfüllt ist.
 StatusMessage                 | Statusmeldung der Bedingung
 
-
 ##### Profile:
 
 Name                          | Beschreibung
@@ -64,3 +63,13 @@ ShdCond_Evaluate              | Auswertung der Bedingung
 Beispiel:
 ```ShdCond_Evaluate(12345);```
 
+
+### 7. Beispiele
+
+**Beispiel Anwesenheit:**
+
+Die Bedingung soll bei Anwesenheit auf TRUE auswerten
+
+![Example](imgs/ExamplePresentInstanceConfig.png)
+
+![Example](imgs/ExamplePresentInstanceObjects.png)

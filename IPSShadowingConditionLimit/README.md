@@ -1,4 +1,4 @@
-# IPSShadowing Modul for IP-Symcon
+# IPSShadowingConditionLimit Modul for IP-Symcon
 
 Das Modul stellt eine Beschattungsbedingung zum Vergleich einer Variable mit einem Limit zur Verfügung.
 
@@ -25,7 +25,7 @@ Die Installation erfolgt über den Module Store.
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" kann das 'IPSShadowing'-Modul mithilfe des Schnellfilters gefunden werden.
+- Unter "Instanz hinzufügen" kann das 'IPSShadowingConditionLimit'-Modul mithilfe des Schnellfilters gefunden werden.
   Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
@@ -65,4 +65,15 @@ ShdCond_Evaluate              | Auswertung der Bedingung
 
 Beispiel:
 ```ShdCond_Evaluate(12345);```
+
+### 7. Beispiele
+
+**Beispiel Temperatur:**
+
+Die Bedingung soll bei Überschreiten einer Temperatur auf TRUE auswerten
+
+![Example](imgs/ExampleTemperaturInstanceConfig.png)
+
+![Example](imgs/ExampleTemperaturInstanceObjects.png)
+
 

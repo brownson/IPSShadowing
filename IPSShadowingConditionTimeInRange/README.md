@@ -1,4 +1,4 @@
-# IPSShadowing Modul for IP-Symcon
+# IPSShadowingConditionTimeInRange Modul for IP-Symcon
 
 Das Modul stellt eine Beschattungsbedingung zum Vergleich von Zeitpunkten zur Verfügung
 ### Inhaltverzeichnis
@@ -24,7 +24,7 @@ Die Installation erfolgt über den Module Store.
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" kann das 'IPSShadowing'-Modul mithilfe des Schnellfilters gefunden werden.
+- Unter "Instanz hinzufügen" kann das 'IPSShadowingConditionTimeInRange'-Modul mithilfe des Schnellfilters gefunden werden.
   Weitere Informationen zum Hinzufügen von Instanzen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
@@ -68,3 +68,17 @@ ShdCond_Evaluate              | Auswertung der Bedingung
 Beispiel:
 ```ShdCond_Evaluate(12345);```
 
+### 7. Beispiele
+
+**Beispiel Tag:**
+
+Die Bedingung soll nach Sonnenaufgang und vor Sonnenuntergang auf TRUE evaluieren 
+aber nicht früher und nicht später als zu einer gewissen Uhrzeit.
+
+![Example](imgs/ExampleDayInstanceConfig.png)
+
+![Example](imgs/ExampleDayInstanceObjects.png)
+
+Variablen zur Definition der Limits:
+
+![Example](imgs/ExampleDayLimitVariables.png)
