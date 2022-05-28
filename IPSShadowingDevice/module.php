@@ -151,7 +151,7 @@ class IPSShadowingDevice extends IPSModule
 	// -------------------------------------------------------------------------
 	private function ValidateSettings() {
 		$rules = json_decode($this->ReadPropertyString('PropertyRules'));
-		if ($this->ReadPropertyInteger('PropertyLevelID') == 0) {
+		if ($this->ReadPropertyInteger('PropertyLevelID') < 10000) {
 			$this->SetStatus(200);
 			return;
 		} else if ($rules == null && count($rules) <= 0) {

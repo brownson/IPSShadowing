@@ -47,10 +47,10 @@ class IPSShadowingConditionTimeInRange extends IPSModule
 	
 	// -------------------------------------------------------------------------
 	private function ValidateSettings() {
-		if ($this->ReadPropertyInteger('PropertyVariableID1Value') == 0) {
+		if ($this->ReadPropertyInteger('PropertyVariableID1Value') < 10000) {
 			$this->SetStatus(200);
 			return;
-		} else if ($this->ReadPropertyInteger('PropertyVariableID2Value') == 0) {
+		} else if ($this->ReadPropertyInteger('PropertyVariableID2Value') < 10000) {
 			$this->SetStatus(201);
 			return;
 		} else {
@@ -61,6 +61,7 @@ class IPSShadowingConditionTimeInRange extends IPSModule
 	// -------------------------------------------------------------------------
 	private function GetTimeValue($property) {
 		$variableID   = $this->ReadPropertyInteger($property);
+			$this->SendDebug('GetTimeValue', "Get TimeValue for Property=$property, ID=$variableID", 0);
 		$variableType = IPS_GetVariable($variableID)['VariableType'];
 		if ($variableType == 1) {
 			$result = date('H:i', GetValue($variableID));
@@ -75,7 +76,7 @@ class IPSShadowingConditionTimeInRange extends IPSModule
 	// -------------------------------------------------------------------------
 	private function GetTimeValueWithDefault($property, $defaultValue) {
 		$variableID   = $this->ReadPropertyInteger($property);
-		if ($variableID == 0) {
+		if ($variableID < 10000) {
 			$result = $defaultValue;
 		} else {
 			$result = $this->GetTimeValue($property);

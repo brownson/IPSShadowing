@@ -45,10 +45,10 @@ class IPSShadowingConditionCompare extends IPSModule
 	
 	// -------------------------------------------------------------------------
 	private function ValidateSettings() {
-		if ($this->ReadPropertyInteger('PropertyVariableID1') == 0) {
+		if ($this->ReadPropertyInteger('PropertyVariableID1') < 10000) {
 			$this->SetStatus(200);
 			return;
-		} else if ($this->ReadPropertyInteger('PropertyVariableID2') == 0) {
+		} else if ($this->ReadPropertyInteger('PropertyVariableID2') < 10000) {
 			$this->SetStatus(201);
 			return;
 		} else {

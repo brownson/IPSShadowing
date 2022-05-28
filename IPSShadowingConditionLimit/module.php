@@ -38,7 +38,7 @@ class IPSShadowingConditionLimit extends IPSModule
 	
 	// -------------------------------------------------------------------------
 	private function ValidateSettings() {
-		 if ($this->ReadPropertyInteger('PropertyVariableID') == 0) {
+		 if ($this->ReadPropertyInteger('PropertyVariableID') < 10000) {
 			$this->SetStatus(200);
 			return;
 		} else {
