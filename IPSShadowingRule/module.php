@@ -49,8 +49,8 @@ class IPSShadowingRule extends IPSModule
 			// Evaluate Condition
 			$this->SendDebug('Evaluate', "Evaluate Condition ".$condition->ConditionID.", Name=".IPS_GetName($condition->ConditionID), 0);
 			ShdCond_Evaluate($condition->ConditionID);
-			$conditionResult  = GetValue(IPS_GetStatusVariableID($condition->ConditionID, 'Evaluated'));
-			$conditionMessage = GetValue(IPS_GetStatusVariableID($condition->ConditionID, 'StatusMessage'));
+			$conditionResult  = GetValue(IPS_GetObjectIDByIdent('Evaluated', $condition->ConditionID));
+			$conditionMessage = GetValue(IPS_GetObjectIDByIdent('StatusMessage', $condition->ConditionID));
 
 			// Build Rule Result
 			$evaluated     = $evaluated && ($condition->Evaluated == $conditionResult);

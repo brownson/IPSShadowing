@@ -196,7 +196,9 @@ class IPSShadowingDevice extends IPSModule
 			$this->SendDebug('MessageSink', "Received VM_UPDATE Value=".$Data[0].", PrgTS=".date('H:i:s', $programTS).", CurrTS="
 			                               .date('H:i:s', time()).", RefTS=".date('H:i:s', $programTS + $manualSec), 0);
 			if ($programTS + $manualSec < time() and !$this->GetValue('ManualMode') and $manualSec > 0) {
-				$this->SetValue('ManualMode', true /*ManualMode*/);
+				if ($this->GetValue('Automatic')) {
+					$this->SetValue('ManualMode', true /*ManualMode*/);
+				}
 				$this->SetValue('Control',    1    /*Stop*/);
 				$this->SendDebug('MessageSink', "Apply ManualMode=Y", 0);
 			}
@@ -417,7 +419,7 @@ class IPSShadowingDevice extends IPSModule
 				$result = 3 /*Shadowing*/;
 				break;
 			case 1 /*Stop*/:
-				throw new Exception('Program can be calculated for "Stop"');
+				throw new Exception('Program cannot be calculated for "Stop"');
 			case 2 /*Up*/:
 				$result = 1 /*Open*/;
 				break;
@@ -465,7 +467,7 @@ class IPSShadowingDevice extends IPSModule
 		foreach ($rules as $rule) {
 			if (!$resetFound) {
 				ShdRule_Evaluate($rule->RuleID);
-				$evaluated     = GetValue(IPS_GetStatusVariableID($rule->RuleID, 'Evaluated'));
+				$evaluated     = GetValue(IPS_GetObjectIDByIdent('Evaluated', $rule->RuleID));
 				if (!array_key_exists($rule->RuleID, $resetStore)) {
 					$resetStore[$rule->RuleID] = $evaluated;
 				}
@@ -474,7 +476,7 @@ class IPSShadowingDevice extends IPSModule
 				$resetFound =    ($rule->Action == 0 && $resetStore[$rule->RuleID] != $evaluated)
 							  || ($rule->Action == 1 && $resetStore[$rule->RuleID] != $evaluated && $evaluated)
 							  || ($rule->Action == 2 && $resetStore[$rule->RuleID] != $evaluated && !$evaluated);
-				$statusMessage = GetValue(IPS_GetStatusVariableID($rule->RuleID, 'StatusMessage'));
+				$statusMessage = GetValue(IPS_GetObjectIDByIdent('StatusMessage', $rule->RuleID));
 				$this->SendDebug('EvaluateReset', "Evaluated Rule ".$rule->RuleID.", Message=$statusMessage, Evaluated="
 				                                  .($evaluated?'Yes':'No').", Reset=".($resetFound?'Yes':'No'), 0);
 				$resetStore[$rule->RuleID] = $evaluated;
@@ -529,8 +531,8 @@ class IPSShadowingDevice extends IPSModule
 					                                  .$this->ProgramToName($rule->Program), 0);
 				} else {
 					ShdRule_Evaluate($rule->RuleID);
-					$evaluated     = ($rule->Evaluated == GetValue(IPS_GetStatusVariableID($rule->RuleID, 'Evaluated')));
-					$statusMessage = GetValue(IPS_GetStatusVariableID($rule->RuleID, 'StatusMessage'));
+					$evaluated     = ($rule->Evaluated == GetValue(IPS_GetObjectIDByIdent('Evaluated', $rule->RuleID)));
+					$statusMessage = GetValue(IPS_GetObjectIDByIdent('StatusMessage', $rule->RuleID));
 					$this->SendDebug('EvaluateRules', "Evaluated Rule ".$rule->RuleID." (".IPS_GetName($rule->RuleID)
 					                                  ."), Message=$statusMessage, Evaluated=".($evaluated?'Yes':'No')
 					                                  .", Program=".$this->ProgramToName($rule->Program), 0);
@@ -618,7 +620,9 @@ class IPSShadowingDevice extends IPSModule
 	// -------------------------------------------------------------------------
 	public function Move(int $movement) {
 		$this->SendDebug('Move', "Execute Movement $movement", 0);
-		$this->SetValue('ManualMode', true /*ManualMode*/);
+		if ($this->GetValue('Automatic')) {
+			$this->SetValue('ManualMode', true /*ManualMode*/);
+		}
 		if ($movement != 1 /*Stop*/) {
 			$this->Program($this->MovementToProgram($movement));
 		} else {

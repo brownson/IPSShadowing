@@ -59,10 +59,10 @@ class IPSShadowingConditionSunPosition extends IPSModule
 			throw new Exception("Location Modul could NOT be found!");
 		}
 		$locationInstanceID = $ids[0];
-		$azimuth       = round(GetValue(IPS_GetStatusVariableID($locationInstanceID, 'Azimuth')), 1); 
+		$azimuth       = round(GetValue(IPS_GetObjectIDByIdent('Azimuth', $locationInstanceID)), 1); 
 		$azimuthStart  = $this->GetValue('AzimuthStart');
 		$azimuthEnd    = $this->GetValue('AzimuthEnd');
-		$altitude      = round(GetValue(IPS_GetStatusVariableID($locationInstanceID, 'Altitude')), 1); 
+		$altitude      = round(GetValue(IPS_GetObjectIDByIdent('Altitude', $locationInstanceID)), 1); 
 		$altitudeStart = $this->GetValue('Altitude');
 		$this->SendDebug('Evaluate', "Evaluate Azimuth $azimuth in $azimuthStart-$azimuthEnd", 0);
 		$this->SendDebug('Evaluate', "Evaluate Azimuth $altitude above $altitudeStart", 0);
