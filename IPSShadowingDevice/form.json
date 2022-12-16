@@ -15,7 +15,7 @@
 		{                                            "type": "Label",             "caption": "Rule Definition" },
 		{ "name": "PropertyTimer",                   "type": "NumberSpinner",     "caption": "Timer for evaluating Rules" ,  "suffix":" Seconds", "value":300},
 		{ "name": "PropertyRules",                   "type": "List",              "caption": "Shadowing Rules",
-													 "add": true, "delete": true, "rowCount": 6,
+													 "add": true, "delete": true, "rowCount": 6, "changeOrder": true, 
 													 "columns": [ { "caption": "Rule", "name": "RuleID",
 																	"width": "auto", "add": -1,
 																	"edit": { "type": "Select" , "options": [ ]}
@@ -44,7 +44,7 @@
 		{                                           "type": "Label",             "caption": "Manual Mode" },
 		{ "name": "PropertyTimeManual",             "type": "NumberSpinner",     "caption": "Time for Manual Mode (0 to disable Manuel Mode)" ,   "suffix":" Seconds", "value":60},
 		{ "name": "PropertyReset",                  "type": "List",              "caption": "Reset Rules",
-													 "add": true, "delete": true, "rowCount": 3,
+													 "add": true, "delete": true, "rowCount": 3, "changeOrder": true, 
 													 "columns": [ { "caption": "Rule", "name": "RuleID",
 																	"width": "auto", "add":"",
 																	"edit": { "type": "Select" ,"options": [ ]}
