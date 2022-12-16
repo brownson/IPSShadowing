@@ -47,6 +47,15 @@ class IPSShadowingDevice extends IPSModule
 		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 3, $this->Translate('Open'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 4, $this->Translate('Close'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 5, $this->Translate('Shadowing'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 10, $this->Translate('10%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 20, $this->Translate('20%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 30, $this->Translate('30%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 40, $this->Translate('40%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 50, $this->Translate('50%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 60, $this->Translate('60%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 70, $this->Translate('70%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 80, $this->Translate('80%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlBlind', 90, $this->Translate('90%'), '', -1);
 
 		if (!IPS_VariableProfileExists('ShdDev.ControlShutter')) {
 			IPS_CreateVariableProfile('ShdDev.ControlShutter', 1);
@@ -60,6 +69,15 @@ class IPSShadowingDevice extends IPSModule
 		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 2, $this->Translate('Up'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 3, $this->Translate('Open'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 4, $this->Translate('Close'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 10, $this->Translate('10%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 20, $this->Translate('20%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 30, $this->Translate('30%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 40, $this->Translate('40%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 50, $this->Translate('50%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 60, $this->Translate('60%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 70, $this->Translate('70%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 80, $this->Translate('80%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlShutter', 90, $this->Translate('90%'), '', -1);
 
 		if (!IPS_VariableProfileExists('ShdDev.ControlMarquee')) {
 			IPS_CreateVariableProfile('ShdDev.ControlMarquee', 1);
@@ -73,6 +91,15 @@ class IPSShadowingDevice extends IPSModule
 		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 2, $this->Translate('In'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 3, $this->Translate('Moved In'), '', -1);
 		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 4, $this->Translate('Moved Out'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 10, $this->Translate('10%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 20, $this->Translate('20%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 30, $this->Translate('30%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 40, $this->Translate('40%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 50, $this->Translate('50%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 60, $this->Translate('60%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 70, $this->Translate('70%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 80, $this->Translate('80%'), '', -1);
+		IPS_SetVariableProfileAssociation('ShdDev.ControlMarquee', 90, $this->Translate('90%'), '', -1);
 
 
 		if (!IPS_VariableProfileExists('ShdDev.Program')) {
@@ -431,6 +458,17 @@ class IPSShadowingDevice extends IPSModule
 				break;
 			case 5 /*Shadowing*/:
 				$result = 3;
+				break;
+			case 10 /*Position 10%*/:
+			case 20 /*Position 20%*/:
+			case 30 /*Position 30%*/:
+			case 40 /*Position 40%*/:
+			case 50 /*Position 50%*/:
+			case 60 /*Position 60%*/:
+			case 70 /*Position 70%*/:
+			case 80 /*Position 80%*/:
+			case 90 /*Position 90%*/:
+				$result = $movement;
 				break;
 			default:
 				throw new Exception("Unknown Movement $movement");
