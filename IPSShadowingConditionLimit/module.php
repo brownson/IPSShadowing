@@ -74,13 +74,13 @@ class IPSShadowingConditionLimit extends IPSModule
 		$this->SetValue('Evaluated', $evaluated);
 		if ($evaluated) {
 			if ($this->ReadPropertyString('PropertyStatusMessageTrue') === '') {
-				$this->SetValue('StatusMessage', "$valueLink>=".$$this->GetValue('LimitLower').'/'.$$this->GetValue('LimitUpper'));
+				$this->SetValue('StatusMessage', "$valueLink>=".$this->GetValue('LimitLower').'/'.$this->GetValue('LimitUpper'));
 			}else {
 				$this->SetValue('StatusMessage', $this->ReadPropertyString('PropertyStatusMessageTrue'));
 			}
 		} else {
 			if ($this->ReadPropertyString('PropertyStatusMessageFalse') === '') {
-				$this->SetValue('StatusMessage', "$valueLink<".$$this->GetValue('LimitLower').'/'.$$this->GetValue('LimitUpper'));
+				$this->SetValue('StatusMessage', "$valueLink<".$this->GetValue('LimitLower').'/'.$this->GetValue('LimitUpper'));
 			}else {
 				$this->SetValue('StatusMessage', $this->ReadPropertyString('PropertyStatusMessageFalse'));
 			}
