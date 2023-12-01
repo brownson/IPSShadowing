@@ -1,16 +1,17 @@
 { 
 	"elements": [
-		{                                           "type": "Label",             "caption": "Device Definition" },
-		{ "name": "PropertyLevelID",                "type": "SelectVariable",    "caption": "Variable Level Link",   "width":"400px" },
-		{ "name": "PropertyType",                   "type": "Select",            "caption": "Shadowing Type",       "width":"400px",
+		{                                            "type": "Label",             "caption": "Device Definition" },
+		{ "name": "PropertyLevelID",                 "type": "SelectVariable",    "caption": "Variable Level Link",   "width":"400px" },
+		{ "name": "PropertyType",                    "type": "Select",            "caption": "Shadowing Type",       "width":"400px",
 													 "options": [ { "caption": "Shutter",                       "value": 0 },
 																  { "caption": "Blind (Up/Down)",               "value": 1 },
 																  { "caption": "Marquee",                       "value": 3 }
 																] },
-		{ "name": "PropertyTimeMove",               "type": "NumberSpinner",    "caption": "Time Shutter Movement" ,  "suffix":" Seconds", "value":60},
-		{                                           "type": "RowLayout",     "items": [
-			{ "name": "PropertyTimeBladeUp",        "type": "NumberSpinner",    "caption": "Time Close Blades Up" ,   "suffix":" Seconds", "value":2},
-			{ "name": "PropertyTimeBladeDown",      "type": "NumberSpinner",    "caption": "Time Close Blades Down" , "suffix":" Seconds", "value":1}
+		{ "name": "PropertyTimeMove",                "type": "NumberSpinner",    "caption": "Time Shutter Movement" ,  "suffix":" Seconds", "value":60},
+		{                                            "type": "Label",             "caption": "Special travel times for blinds" },
+		{                                            "type": "RowLayout",     "items": [
+			{ "name": "PropertyTimeBladeUp",         "type": "NumberSpinner",    "caption": "Time Close Blades Up" ,   "suffix":" Seconds", "value":2},
+			{ "name": "PropertyTimeBladeDown",       "type": "NumberSpinner",    "caption": "Time Close Blades Down" , "suffix":" Seconds", "value":1}
 		] },
 		{                                            "type": "Label",             "caption": "Rule Definition" },
 		{ "name": "PropertyTimer",                   "type": "NumberSpinner",     "caption": "Timer for evaluating Rules" ,  "suffix":" Seconds", "value":300},
