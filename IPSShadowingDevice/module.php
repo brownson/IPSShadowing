@@ -247,17 +247,17 @@ class IPSShadowingDevice extends IPSModule
 			$rules[$idx]['value']    = $ruleInstanceID;
 			$idx++;
 		}
-		$data['elements']['7']['columns'][0]['edit']['options'] = $rules;
+		$data['elements']['8']['columns'][0]['edit']['options'] = $rules;
 
 		$rules                = Array();
 		$idx = 0;
 		foreach ($ruleInstanceIDs as $ruleInstanceID) {
 			$rules[$idx]['caption']  = IPS_GetName($ruleInstanceID);
 			$rules[$idx]['value']    = $ruleInstanceID;
-			$data['elements']['10']['columns'][0]['add'] = $ruleInstanceID;
+			$data['elements']['11']['columns'][0]['add'] = $ruleInstanceID;
 			$idx++;
 		}
-		$data['elements']['10']['columns'][0]['edit']['options'] = $rules;
+		$data['elements']['11']['columns'][0]['edit']['options'] = $rules;
 
 		return json_encode($data);
 	}
