@@ -218,11 +218,13 @@ class IPSShadowingDevice extends IPSModule
 	public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
 		if ($Message == VM_UPDATE) {
 			$programID = $this->GetIDForIdent('Program');
-			$manualSec = $this->ReadPropertyInteger('PropertyTimeManual');
 			$programTS = IPS_GetVariable($programID)['VariableUpdated'];
-			$this->SendDebug('MessageSink', "Received VM_UPDATE Value=".$Data[0].", PrgTS=".date('H:i:s', $programTS).", CurrTS="
-			                               .date('H:i:s', time()).", RefTS=".date('H:i:s', $programTS + $manualSec), 0);
-			if ($programTS + $manualSec < time() and !$this->GetValue('ManualMode') and $manualSec > 0) {
+			$levelID   = $this->ReadPropertyInteger('PropertyLevelID');
+			$levelTS   = IPS_GetVariable($levelID)['VariableChanged'];
+			$manualSec = $this->ReadPropertyInteger('PropertyTimeManual');
+			$this->SendDebug('MessageSink', "Received VM_UPDATE Value=".$Data[0].", PrgTS=".date('H:i:s', $programTS).", LevelTS="
+			                               .date('H:i:s', $levelTS).", RefTS=".date('H:i:s', $programTS + $manualSec), 0);
+			if ($programTS + $manualSec < $levelTS and !$this->GetValue('ManualMode') and $manualSec > 0) {
 				if ($this->GetValue('Automatic')) {
 					$this->SetValue('ManualMode', true /*ManualMode*/);
 				}
